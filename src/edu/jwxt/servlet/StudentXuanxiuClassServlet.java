@@ -31,14 +31,17 @@ public class StudentXuanxiuClassServlet extends HttpServlet{
 		String xuanxiu = (String) request.getParameter("xuanxiu");
 		System.out.println(xuanxiu);
 		if(null != request.getSession().getAttribute("id")) {
-			//int id = (int) request.getSession().getAttribute("id");
+			int id = (int) request.getSession().getAttribute("id");
 			IStudentService istudentservice = new IStudentServiceImpl();
 			List<StudentGrade> list = istudentservice.GetXuanxiuClassList(xuanxiu);
 			request.setAttribute("list", list);
+			List<String> list1 = istudentservice.GetXuanxiuClass(id);
+			request.setAttribute("list1", list1);
 			request.getRequestDispatcher("select_course.jsp").forward(request, response);
 		}else {
 			System.out.println("登录失效！");
 			response.sendRedirect("nologin.jsp");
 		}
 	}
+	
 }

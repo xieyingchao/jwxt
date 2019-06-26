@@ -58,4 +58,16 @@ public class IStudentServiceImpl implements IStudentService{
 		// TODO Auto-generated method stub
 		return istudentdao.SelectClass(tcid, sid);
 	}
+	
+	@Override
+	public boolean DeleteClass(String tcid, int sid) {
+		// TODO Auto-generated method stub
+		return istudentdao.DeleteClass(tcid, sid);
+	}
+	
+	@Override
+	public List<String> GetXuanxiuClass(int sid) {
+		List<String> list = istudentdao.GetXuanxiuClass(sid);
+		return list;
+	}
 }

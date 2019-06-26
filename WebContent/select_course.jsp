@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -32,6 +33,11 @@
 			.form_pre {
 				height: 100%;
 			}
+			.result {
+				font-size: 16px;
+				color:red;
+				margin-left: 20px;
+			}
 		</style>
 	</head>
 <body>
@@ -46,14 +52,13 @@
 				<form action="selectcourse" method="get">
 					<div class="col-sm-3">
 						<select class="form-control" id="exampleInputAddress7" name="xuanxiu">
-							<option value="0">主修</option>
 							<option value="1">选修</option>
+							<option value="0">主修</option>
 						</select>
-						<span style="color:red;">${result}</span>
 					</div>
-					
+					<span class="result" style="color:red;">${result}</span>
 					<div class="right">
-						<button class="btn search" type="submit">检索</button>
+						<button class="btn search ${refresh}" type="submit">检索</button>
 						<button class="btn" type="button">下载</button>
 					</div>
 			</form>
@@ -70,6 +75,7 @@
 					<th>上课时间</th>
 					<th>上课地点</th>
 					<th>限选/已选</th>
+					<th>状态</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -86,8 +92,15 @@
 						<td>${grade.getClassroom()}</td>
 						<td>60 / ${grade.getPpnum()}</td>
 						<td>
-							<a class="btn btn-primary" href="selectclass?tcid=${grade.getNum()}">选择</a>
-							<button class="btn" type="button">退选</button>
+							<c:forEach items="${list1}" var = "i">
+								<c:set var="num" value="${grade.getNum()}"></c:set>
+								<c:set var="i1" value="${i}"></c:set>
+								<c:if test="${num == i1}">已选</c:if>
+							</c:forEach>
+						</td>
+						<td>
+							<a class="btn btn-primary" href="selectclass?tcid=${grade.getNum()}&&kind=1">选择</a>
+							<a class="btn " href="selectclass?tcid=${grade.getNum()}&&kind=0">退选</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -96,6 +109,8 @@
 	</div>
 </body>
 <script>
-
+	$(function(){
+		setTimeout("$('.refresh').click();",2000);
+	});
 </script>
 </html>

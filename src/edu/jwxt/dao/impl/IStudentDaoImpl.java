@@ -295,7 +295,7 @@ public class IStudentDaoImpl implements IStudentDao{
 			rs = pstmt.executeUpdate();
 			System.out.println("rs:"+rs);
 			if(rs > 0) {
-				String sql3 = "update from teacher_course set ppnum = ppnum+1 where coid = "+tcid;
+				String sql3 = "update teacher_course set ppnum = ppnum+1 where coid = "+tcid;
 				PreparedStatement pstmt3 = conn.prepareStatement(sql3);
 				int result = pstmt3.executeUpdate();
 				if(result > 0) {
@@ -309,5 +309,55 @@ public class IStudentDaoImpl implements IStudentDao{
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	@Override
+	public boolean DeleteClass(String tcid, int sid) {
+		Connection conn = DBUtil.getConn();
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "delete from student_course where sid = ? and tcid = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(2, tcid);
+			pstmt.setInt(1, sid);
+			result = pstmt.executeUpdate();
+			if(result > 0) {
+				String sql1 = "update teacher_course set ppnum = ppnum-1 where coid = "+tcid;
+				PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+				int rs = pstmt1.executeUpdate();
+				if(rs > 0) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@Override
+	public List<String> GetXuanxiuClass(int sid) {
+		Connection conn = DBUtil.getConn();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<String> list = new ArrayList<String>();
+		String sql = "select student_course.tcid from student_course where sid = "+sid;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String tcid = rs.getString(1);
+				list.add(tcid);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

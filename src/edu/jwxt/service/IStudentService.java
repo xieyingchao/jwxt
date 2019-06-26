@@ -64,4 +64,19 @@ public interface IStudentService {
 	 * @return 0:失败 1:成功 -1:时间冲突
 	 */
 	public int SelectClass(String tcid,int sid);
+	
+	/**
+	 * 学生退选选修课
+	 * @param tcid
+	 * @param sid
+	 * @return true:退选成功
+	 */
+	public boolean DeleteClass(String tcid,int sid);
+	
+	/**
+	 * 获取学生已选的选修课
+	 * @param sid
+	 * @return
+	 */
+	public List<String> GetXuanxiuClass(int sid);
 }

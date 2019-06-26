@@ -62,4 +62,19 @@ public interface IStudentDao {
 	 * @return 
 	 */
 	public int SelectClass(String tcid,int sid);
+	
+	/**
+	 * 学生退选选修课
+	 * @param tcid
+	 * @param sid
+	 * @return
+	 */
+	public boolean DeleteClass(String tcid,int sid);
+	
+	/**
+	 * 获取学生已选的选修课
+	 * @param sid
+	 * @return
+	 */
+	public List<String> GetXuanxiuClass(int sid);
 }
