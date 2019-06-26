@@ -119,22 +119,22 @@
 <script type="text/javascript">
 	$(function(){
 		$(".par_captcha>img").click(function(){
-			//x上限，y下限     
-			var x = 12;     
-			var y = 0;     
-			var rand = parseInt(Math.random() * (x - y + 1) + y); 
-			this.src = "code";
+			//点击图片换验证码
+			this.src = "code?" + new Date().getTime();
 		});
-		// $(".userpwd>input").focus(function(){
-		// 	if($(".userpwd>input").val() > 6){
-		// 		alert("lalala");
-		// 		$(".userpwd>.text-success").color = "green";
-		// 	}
-		// });
-		// if($(".userpwd>input").val() > 6){
-		// 	alert("lalala");
-		// 	$(".userpwd>.text-success").color = "green";
-		// }
+		$(".btn").click(function(){
+			if($("#inputAccountExample2").val() == ""){
+				alert("请输入学号或工号！");
+				return false;
+			}else if($("#inputPasswordExample2").val() == ""){
+				alert("请输入密码！");
+				return false;
+			}else if($("#inputPasswordExample1").val() == ""){
+				alert("请输入验证码！");
+				return false;
+			}
+			$(".login_form").submit();
+		});
 	});
 </script>
 </html>

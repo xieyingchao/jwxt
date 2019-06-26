@@ -4,5 +4,5 @@ import edu.jwxt.bean.User;
 
 public interface IUserDao {
 
-	public boolean login(User user);
+	public int login(User user,String user_who);
 }

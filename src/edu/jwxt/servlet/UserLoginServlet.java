@@ -31,12 +31,24 @@ public class UserLoginServlet extends HttpServlet{
 		//验证码正确就比较账号密码,读取session比较
 		
 		if(user_code.equalsIgnoreCase((String) req.getSession().getAttribute("code"))) {
-			boolean result = iuserservice.login(user);
+			int result = iuserservice.login(user,user_who);
 			System.out.println(result);
-			if(result) {
-				//账号密码正确，跳转首页,将用户账户存入到session，以便首页读取
+			if(result == 0) {
+				
+				//学生账号密码正确，跳转首页,将用户账户存入到session，以便首页读取
 				req.getSession().setAttribute("user", user_name);
-				req.getRequestDispatcher("index.jsp").forward(req, resp);
+				req.getSession().setAttribute("user_who", user_who);
+				req.getSession().setAttribute("password", user_pwd);
+				//req.getRequestDispatcher("index.jsp").forward(req, resp);
+				resp.sendRedirect("index.jsp");
+			}else if(result == 1){
+				
+				//教师账号密码正确，跳转到教师首页，将用户账户存入session
+				req.getSession().setAttribute("user", user_name);
+				req.getSession().setAttribute("user_who", user_who);
+				req.getSession().setAttribute("password", user_pwd);
+				//req.getRequestDispatcher("index.jsp").forward(req, resp);
+				resp.sendRedirect("index.jsp");
 			}else {
 				System.out.println("密码错误");
 				req.setAttribute("info", "账户或密码错误，请重试！");

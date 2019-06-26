@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>jwxt</display-name>
   
-  //登路
+  <!-- 登录 -->
   <servlet>
   	<servlet-name>UserLoginServlet</servlet-name>
   	<servlet-class>edu.jwxt.servlet.UserLoginServlet</servlet-class>
@@ -12,7 +12,7 @@
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
   
-  //验证码
+  <!-- 获取验证码 -->
   <servlet>
   	<servlet-name>CodeServlet</servlet-name>
   	<servlet-class>edu.jwxt.servlet.CodeServlet</servlet-class>
@@ -20,6 +20,86 @@
   <servlet-mapping>
   	<servlet-name>CodeServlet</servlet-name>
   	<url-pattern>/code</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 用户信息-->
+  <servlet>
+  	<servlet-name>UserInfoServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.UserInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserInfoServlet</servlet-name>
+  	<url-pattern>/user_info</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 学生成绩-->
+  <servlet>
+  	<servlet-name>StudentGradeServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.StudentGradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StudentGradeServlet</servlet-name>
+  	<url-pattern>/studentgrade</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 修改信息-->
+  <servlet>
+  	<servlet-name>UpdateInfoServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.UpdateInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UpdateInfoServlet</servlet-name>
+  	<url-pattern>/updateinfo</url-pattern>
+  </servlet-mapping>
+  
+      <!-- 修改密码-->
+  <servlet>
+  	<servlet-name>UpdatePwdServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.UpdatePwdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UpdatePwdServlet</servlet-name>
+  	<url-pattern>/updatepwd</url-pattern>
+  </servlet-mapping>
+  
+       <!-- 修改密码-->
+  <servlet>
+  	<servlet-name>StudentTestServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.StudentTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StudentTestServlet</servlet-name>
+  	<url-pattern>/testinfo</url-pattern>
+  </servlet-mapping>
+  
+        <!-- 查询课表-->
+  <servlet>
+  	<servlet-name>StudentClassTableServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.StudentClassTableServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StudentClassTableServlet</servlet-name>
+  	<url-pattern>/studentclass</url-pattern>
+  </servlet-mapping>
+  
+          <!-- 查询选修课-->
+  <servlet>
+  	<servlet-name>StudentXuanxiuClassServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.StudentXuanxiuClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StudentXuanxiuClassServlet</servlet-name>
+  	<url-pattern>/selectcourse</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 提交选修课-->
+  <servlet>
+  	<servlet-name>StudentSelectClassServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.StudentSelectClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>StudentSelectClassServlet</servlet-name>
+  	<url-pattern>/selectclass</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

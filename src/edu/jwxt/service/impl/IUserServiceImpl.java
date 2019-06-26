@@ -8,8 +8,8 @@ import edu.jwxt.service.IUserService;
 public class IUserServiceImpl implements IUserService{
 	IUserDao iuserdao = new IUserDaoImpl();
 	@Override
-	public boolean login(User user) {
-		System.out.println(iuserdao.login(user));
-		return iuserdao.login(user);
+	public int login(User user,String user_who) {
+		//System.out.println(iuserdao.login(user,user_who));
+		return iuserdao.login(user,user_who);
 	}
 }
