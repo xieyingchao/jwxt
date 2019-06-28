@@ -44,10 +44,18 @@
 			<tr>
 			  <td>所在系</td>
 			  <td>${teacher.getSept()}</td>
-			  <td>政治面貌</td>
-			  <td>共青团员</td>
-			  <td>宿舍</td>
-			  <td>B203</td>
+			  <td>职位</td>
+			  <td>教授</td>
+			  <td>办公室</td>
+			  <td>理工楼B405</td>
+			</tr>
+			<tr>
+			  <td>邮箱</td>
+			  <td>${teacher.getEmail()}</td>
+			  <td>联系地址</td>
+			  <td>${teacher.getAddress()}</td>
+			  <td>联系电话</td>
+			  <td colspan="2">${teacher.getTel()}</td>
 			</tr>
 		  </tbody>
 		</table>

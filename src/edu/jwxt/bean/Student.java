@@ -14,6 +14,13 @@ public class Student {
 	String email;
 	String address;
 	String tel;
+	public Student(String name, String num, int sex, String cname) {
+		super();
+		this.name = name;
+		this.num = num;
+		this.sex = sex;
+		this.cname = cname;
+	}
 	String newpwd;
 	
 	public String getNewpwd() {

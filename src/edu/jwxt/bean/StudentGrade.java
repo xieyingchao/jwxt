@@ -13,7 +13,35 @@ public class StudentGrade {
 	String classroom;
 	String sept;
 	String ppnum;
+	String cname;
+	String scid;
 	
+	public StudentGrade(String name, int grade, String num, String cname,String scid) {
+		super();
+		this.name = name;
+		this.grade = grade;
+		this.num = num;
+		this.cname = cname;
+		this.scid = scid;
+	}
+	public String getScid() {
+		return scid;
+	}
+	public void setScid(String scid) {
+		this.scid = scid;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public void setXuefen(double xuefen) {
+		this.xuefen = xuefen;
+	}
+	public void setGetxuefen(double getxuefen) {
+		this.getxuefen = getxuefen;
+	}
 	public String getPpnum() {
 		return ppnum;
 	}

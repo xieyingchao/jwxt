@@ -65,10 +65,9 @@
 						<td valign="top" align="left">
 							<ul id="treeMenu" class="tree tree-menu" data-ride="tree" style="width: 200px">
 								<li class="active index"><a href="#"><i class="icon icon-home"></i>首页</a></li>
-								<li class="search_grade"><a href="#"><i class="icon icon-bar-chart"></i>成绩查询</a></li>
+								<li class="search_grade"><a href="#"><i class="icon icon-bar-chart"></i>成绩管理</a></li>
 								<li class="course"><a href="#"><i class="icon icon-table"></i>课表查询</a></li>
-								<li class="select_course"><a href="#"><i class="icon icon-edit"></i>选课</a></li>
-								<li class="test_info"><a href="#"><i class="icon icon-th-list"></i>考试查询</a></li>
+								<li class="test_info"><a href="#"><i class="icon icon-th-list"></i>考试管理</a></li>
 								<li><a href="#"><i class="icon icon-edit-sign"></i>修改信息</a>
 									<ul>
 										<li class="update_info"><a href="#">修改信息</a></li>
@@ -113,13 +112,13 @@
 		
 		$(".index").on('click',function(){
 			if($(this).hasClass('active') == false){
-				$(".iframe").attr("src","user_info");
+				$(".iframe").attr("src","teacher_info");
 			}
 		});
 		//点击查询成绩就改变框架页面的src
 		$(".search_grade").on('click',function(){
 			if($(this).hasClass('active') == false){
-				$(".iframe").attr("src","grade1.jsp");
+				$(".iframe").attr("src","teacherclass?xuenian=2019~2018学年&&xueqi=第二学期&&teachergrade=1");
 			}
 		});
 		$(".update_info").on('click',function(){
@@ -134,12 +133,12 @@
 		});
 		$(".test_info").on('click',function(){
 			if($(this).hasClass('active') == false){
-				$(".iframe").attr("src","Test.jsp");
+				$(".iframe").attr("src","teacher_test.jsp");
 			}
 		});
 		$(".course").on('click',function(){
 			if($(this).hasClass('active') == false){
-				$(".iframe").attr("src","course1.jsp");
+				$(".iframe").attr("src","teacher_course.jsp");
 			}
 		});
 		$(".select_course").on('click',function(){

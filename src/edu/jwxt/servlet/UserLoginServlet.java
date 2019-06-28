@@ -13,6 +13,11 @@ import edu.jwxt.service.impl.IUserServiceImpl;
 
 public class UserLoginServlet extends HttpServlet{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//乱码解决
 		req.setCharacterEncoding("UTF-8");
@@ -48,7 +53,7 @@ public class UserLoginServlet extends HttpServlet{
 				req.getSession().setAttribute("user_who", user_who);
 				req.getSession().setAttribute("password", user_pwd);
 				//req.getRequestDispatcher("index.jsp").forward(req, resp);
-				resp.sendRedirect("index.jsp");
+				resp.sendRedirect("teacher_index.jsp");
 			}else {
 				System.out.println("密码错误");
 				req.setAttribute("info", "账户或密码错误，请重试！");

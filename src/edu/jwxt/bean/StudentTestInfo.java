@@ -7,6 +7,38 @@ public class StudentTestInfo {
 	String address;
 	String time;
 	String kind;
+	String ppnum;
+	String coid;
+	String scid;
+	
+	
+	public String getScid() {
+		return scid;
+	}
+	public void setScid(String scid) {
+		this.scid = scid;
+	}
+	public String getCoid() {
+		return coid;
+	}
+	public void setCoid(String coid) {
+		this.coid = coid;
+	}
+	public StudentTestInfo(String name, String address, String time, String ppnum,String coid,String kind) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.time = time;
+		this.ppnum = ppnum;
+		this.coid = coid;
+		this.kind = kind;
+	}
+	public String getPpnum() {
+		return ppnum;
+	}
+	public void setPpnum(String ppnum) {
+		this.ppnum = ppnum;
+	}
 	public StudentTestInfo(int sid, String name, String address, String time, String kind) {
 		super();
 		this.sid = sid;

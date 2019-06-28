@@ -32,6 +32,16 @@
   	<url-pattern>/user_info</url-pattern>
   </servlet-mapping>
   
+  <!-- 教师信息-->
+  <servlet>
+  	<servlet-name>TeacherInfoServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.TeacherInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TeacherInfoServlet</servlet-name>
+  	<url-pattern>/teacher_info</url-pattern>
+  </servlet-mapping>
+  
   <!-- 学生成绩-->
   <servlet>
   	<servlet-name>StudentGradeServlet</servlet-name>
@@ -100,6 +110,56 @@
   <servlet-mapping>
   	<servlet-name>StudentSelectClassServlet</servlet-name>
   	<url-pattern>/selectclass</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 教师查询课表-->
+  <servlet>
+  	<servlet-name>TeacherCourseServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.TeacherCourseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TeacherCourseServlet</servlet-name>
+  	<url-pattern>/teacherclass</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 获取考试安排-->
+  <servlet>
+  	<servlet-name>TeacherTestServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.TeacherTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TeacherTestServlet</servlet-name>
+  	<url-pattern>/teachertest</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 修改考试安排-->
+  <servlet>
+  	<servlet-name>UpdateTestServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.UpdateTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UpdateTestServlet</servlet-name>
+  	<url-pattern>/testmanage</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 教师获取学生信息-->
+  <servlet>
+  	<servlet-name>TeacherGradeservlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.TeacherGradeservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TeacherGradeservlet</servlet-name>
+  	<url-pattern>/teachergrade</url-pattern>
+  </servlet-mapping>
+  
+   <!-- 教师更新学生成绩-->
+  <servlet>
+  	<servlet-name>TeacherUpdateGradeServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.TeacherUpdateGradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>TeacherUpdateGradeServlet</servlet-name>
+  	<url-pattern>/updategrade</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

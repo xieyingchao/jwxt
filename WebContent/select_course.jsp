@@ -56,7 +56,7 @@
 							<option value="0">主修</option>
 						</select>
 					</div>
-					<span class="result" style="color:red;">${result}</span>
+					
 					<div class="right">
 						<button class="btn search ${refresh}" type="submit">检索</button>
 						<button class="btn" type="button">下载</button>
@@ -83,7 +83,7 @@
 				<c:forEach items="${list}" var="grade">
 					<c:set var="i" value="${j = j + 1 }"></c:set>
 					<tr>
-						<td>${grade.getNum()}</td>
+						<td class="tcid">${grade.getNum()}</td>
 						<td>${grade.getName()}</td>
 						<td>${grade.getXuefen()}</td>
 						<td>${grade.getSept()}</td>
@@ -91,7 +91,7 @@
 						<td>${grade.getTime()}</td>
 						<td>${grade.getClassroom()}</td>
 						<td>60 / ${grade.getPpnum()}</td>
-						<td>
+						<td class="choose">
 							<c:forEach items="${list1}" var = "i">
 								<c:set var="num" value="${grade.getNum()}"></c:set>
 								<c:set var="i1" value="${i}"></c:set>
@@ -99,8 +99,8 @@
 							</c:forEach>
 						</td>
 						<td>
-							<a class="btn btn-primary" href="selectclass?tcid=${grade.getNum()}&&kind=1">选择</a>
-							<a class="btn " href="selectclass?tcid=${grade.getNum()}&&kind=0">退选</a>
+							<a class="btn btn-primary commit">选择</a>
+							<a class="btn cancel">退选</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -110,7 +110,77 @@
 </body>
 <script>
 	$(function(){
-		setTimeout("$('.refresh').click();",2000);
+		
+		var i = 0;
+		$('tbody tr').each(function(){
+			i++;
+			var tcid;
+			$(this).find('.commit').click(function(){
+				
+				tcid = $(this).parents('tr').find('.tcid').text();
+				param = "tcid="+tcid+"&&kind=1";
+				$.ajax({
+					url:"selectclass",
+					type:"post",
+					data:param,
+					dataType:"json",
+					async:true,
+					success:function(data){
+						if(data == '1'){
+							new $.zui.Messager('选择成功！', {
+							    type: 'success' // 定义颜色主题
+							}).show();
+							
+							$(this).parents('tr').find('.choose').text('已选');
+						}else if(data == '-1'){
+							new $.zui.Messager('与已选课程时间冲突！', {
+							    type: 'danger' // 定义颜色主题
+							}).show();
+						}else{
+							new $.zui.Messager('选择失败', {
+							    type: 'danger' // 定义颜色主题
+							}).show();
+						}
+						setTimeout(function(){
+							new $.zui.Messager('2秒后刷新！', {
+							    type: 'info' // 定义颜色主题
+							}).show();
+						},500);
+						setTimeout("$('.search').click();",2000);
+					}
+				});
+			});
+			$(this).find('.cancel').click(function(){
+				tcid = $(this).parents('tr').find('.tcid').text();
+				param = "tcid="+tcid+"&&kind=0";
+				$.ajax({
+					url:"selectclass",
+					type:"post",
+					data:param,
+					dataType:"json",
+					async:true,
+					success:function(data){
+						if(data == '1'){
+							new $.zui.Messager('退选成功！', {
+							    type: 'success' // 定义颜色主题
+							}).show();
+							$(this).parents('tr').find('.choose').text('');
+						}else{
+							new $.zui.Messager('退选失败', {
+							    type: 'danger' // 定义颜色主题
+							}).show();
+						}
+						setTimeout(function(){
+							new $.zui.Messager('2秒后刷新！', {
+							    type: 'info' // 定义颜色主题
+							}).show();
+						},500);
+						
+						setTimeout("$('.search').click();",2000);
+					}
+				});
+			});
+		});
 	});
 </script>
 </html>

@@ -15,7 +15,12 @@ import edu.jwxt.service.ITeacherService;
 import edu.jwxt.service.impl.IStudentServiceImpl;
 import edu.jwxt.service.impl.ITeacherServiceImpl;
 
-public class UserInfoServlet extends HttpServlet{
+public class TeacherInfoServlet extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,13 +34,15 @@ public class UserInfoServlet extends HttpServlet{
 		//如果session为空，表示不是通过登录页面进入到index的，提示重新登录
 		if(null != user) {
 			//System.out.println(user_who.equals("student"));
-				//如果登录用户是学生，查找返回学生用户信息
-				IStudentService istudentservice = new IStudentServiceImpl();
-				Student student = istudentservice.GetStudentInfo((String)user, (String) pwd);
-				request.getSession().setAttribute("id", student.getSid());
-				request.getSession().setAttribute("name", student.getName());
-				request.setAttribute("student", student);
-				request.getRequestDispatcher("user_info.jsp").forward(request, response);
+			
+				//如果登陆用户是教师，查找返回教师用户信息
+				System.out.println("教师模式");
+				ITeacherService iteacherservice = new ITeacherServiceImpl();
+				Teacher teacher = iteacherservice.GetTeacherInfo((String)user, (String)pwd);
+				request.getSession().setAttribute("id", teacher.getTid());
+				request.getSession().setAttribute("name", teacher.getName());
+				request.setAttribute("teacher", teacher);
+				request.getRequestDispatcher("teacher_info.jsp").forward(request, response);
 			
 			
 		}else {
