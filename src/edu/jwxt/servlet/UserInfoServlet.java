@@ -30,6 +30,7 @@ public class UserInfoServlet extends HttpServlet{
 		if(null != user) {
 			//System.out.println(user_who.equals("student"));
 				//如果登录用户是学生，查找返回学生用户信息
+			System.out.println("学生模式");
 				IStudentService istudentservice = new IStudentServiceImpl();
 				Student student = istudentservice.GetStudentInfo((String)user, (String) pwd);
 				request.getSession().setAttribute("id", student.getSid());

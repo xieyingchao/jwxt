@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import edu.jwxt.bean.User;
 import edu.jwxt.dao.IUserDao;
 import edu.jwxt.util.DBUtil;
@@ -19,12 +21,14 @@ public class IUserDaoImpl implements IUserDao{
 		int result = -1;
 		Connection conn = DBUtil.getConn();
 		PreparedStatement pstmt = null;
-		String sql = "select * from "+user_who+" where num = "+user.getNum()+" and password = "+user.getPassword();
+		String md5pwd = DigestUtils.md5Hex(user.getPassword());
+		System.out.println(md5pwd);
+		String sql = "select * from "+user_who+" where num = "+user.getNum()+" and password = ?";
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			//System.out.println(sql);
-//			pstmt.setString(1, user_who);
+			pstmt.setString(1, md5pwd);
 //			pstmt.setString(2, user.getNum());
 //			pstmt.setString(3, user.getPassword());
 			rs = pstmt.executeQuery();

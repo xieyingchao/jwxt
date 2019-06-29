@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import edu.jwxt.bean.Student;
 import edu.jwxt.bean.StudentGrade;
 import edu.jwxt.bean.StudentTestInfo;
@@ -20,7 +22,7 @@ public class ITeacherDaoImpl implements ITeacherDao{
 	public Teacher GetTeacherInfo(String num, String pwd) {
 		Connection conn = DBUtil.getConn();
 		PreparedStatement pstmt = null;
-		String sql = "select * from teacher where num = "+ num +" and password = "+ pwd;
+		String sql = "select * from teacher where num = "+ num +" and password = ?";
 		ResultSet rs = null;
 		
 		int tid = 0;
@@ -38,6 +40,9 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			String md5pwd = DigestUtils.md5Hex(pwd);
+			System.out.println(md5pwd);
+			pstmt.setString(1, md5pwd);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				tid = rs.getInt(1);
@@ -105,13 +110,13 @@ public class ITeacherDaoImpl implements ITeacherDao{
 			while(rs.next()) {
 				pwd = rs.getString(1);
 			}
-			
-			System.out.println(teacher.getPassword().equals(pwd));
-			if(teacher.getPassword().equals(pwd)) {
+			String newmd5pwd = DigestUtils.md5Hex(teacher.getPassword());
+			System.out.println(newmd5pwd.equals(pwd));
+			if(newmd5pwd.equals(pwd)) {
 				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setString(1, teacher.getNewpwd());
+				pstmt2.setString(1, DigestUtils.md5Hex(teacher.getNewpwd()));
 				pstmt2.setInt(2, teacher.getTid());
-				pstmt2.setString(3, teacher.getPassword());
+				pstmt2.setString(3, newmd5pwd);
 				result = pstmt2.executeUpdate();
 				if(result > 0) {
 					return 1;

@@ -162,6 +162,26 @@
   	<url-pattern>/updategrade</url-pattern>
   </servlet-mapping>
   
+    <!-- 教师更新学生成绩-->
+  <servlet>
+  	<servlet-name>LoginOutServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.LoginOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginOutServlet</servlet-name>
+  	<url-pattern>/loginout</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 下载-->
+  <servlet>
+  	<servlet-name>DownloadServlet</servlet-name>
+  	<servlet-class>edu.jwxt.servlet.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DownloadServlet</servlet-name>
+  	<url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

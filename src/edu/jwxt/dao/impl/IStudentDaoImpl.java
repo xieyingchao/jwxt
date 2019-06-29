@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import edu.jwxt.bean.Student;
 import edu.jwxt.bean.StudentGrade;
 import edu.jwxt.bean.StudentTestInfo;
 import edu.jwxt.dao.IStudentDao;
 import edu.jwxt.util.DBUtil;
+import edu.jwxt.util.FileWrite;
 
 public class IStudentDaoImpl implements IStudentDao{
 
@@ -19,7 +22,8 @@ public class IStudentDaoImpl implements IStudentDao{
 
 		Connection conn = DBUtil.getConn();
 		PreparedStatement pstmt = null;
-		String sql = "select * from student where num = "+num+" and password = "+pwd;
+		
+		String sql = "select * from student where num = "+num+" and password = ?";
 		ResultSet rs = null;
 		
 		int sid = 0;
@@ -38,6 +42,8 @@ public class IStudentDaoImpl implements IStudentDao{
 		try {
 			pstmt = conn.prepareStatement(sql);
 			System.out.println(sql);
+			String md5pwd = DigestUtils.md5Hex(pwd);
+			pstmt.setString(1, md5pwd);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				sid = rs.getInt(1);
@@ -88,7 +94,7 @@ public class IStudentDaoImpl implements IStudentDao{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+		FileWrite.filewrite(list);
 		return list;
 	}
 	
@@ -129,19 +135,23 @@ public class IStudentDaoImpl implements IStudentDao{
 		String sql1 = "select password from student where sid = ?";
 		String sql = "update student set password = ? where sid = ? and password = ?";
 		try {
-			System.out.println(sql);
+			System.out.println(sql1);
 			pstmt1 = conn.prepareStatement(sql1);
 			pstmt1.setInt(1, student.getSid());
 			rs = pstmt1.executeQuery();
 			while(rs.next()) {
 				pwd = rs.getString(1);
 			}
-			System.out.println(student.getPassword().equals(pwd));
-			if(student.getPassword().equals(pwd)) {
+			String newmd5pwd = DigestUtils.md5Hex(student.getPassword());
+//			System.out.println(pwd);
+//			System.out.println(newmd5pwd);
+//			System.out.println(newmd5pwd.equals(pwd));
+			if(newmd5pwd.equals(pwd)) {
 				pstmt2 = conn.prepareStatement(sql);
-				pstmt2.setString(1, student.getNewpwd());
+				pstmt2.setString(1, DigestUtils.md5Hex(student.getNewpwd()));
 				pstmt2.setInt(2, student.getSid());
-				pstmt2.setString(3, student.getPassword());
+				System.out.println(newmd5pwd);
+				pstmt2.setString(3, newmd5pwd);
 				result = pstmt2.executeUpdate();
 				if(result > 0) {
 					return 1;

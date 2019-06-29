@@ -80,7 +80,7 @@
 									<li>
 									  <a href="#" class="user_name"><i class="icon icon-user"></i>${user}</a>
 									</li>
-									<li class="loginout"><a href="login_page.jsp"><i class="icon icon-trash"></i>注销</a></li>
+									<li class="loginout"><a href="loginout"><i class="icon icon-trash"></i>注销</a></li>
 									<li><a href="index.jsp"><i class="icon icon-refresh"></i>刷新</a></li>
 								  </ul>
 								</li>
@@ -94,7 +94,7 @@
 							</ul>
 						</td>
 						<td valign="top" align="right">
-							<iframe class="iframe" src="user_info" frameborder="0" scrolling="no" width="1000px" height="600px" style="background: #fff;"></iframe>
+							<iframe class="iframe" src="teacher_info" frameborder="0" scrolling="no" width="1000px" height="600px" style="background: #fff;"></iframe>
 						</td>
 					</tr>
 				</table>

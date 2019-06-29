@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -62,7 +63,7 @@
 					
 					<div class="right">
 						<button class="btn search" type="submit">检索</button>
-						<button class="btn" type="button">下载</button>
+						<a class="btn" href="download?filename=grade.xls">下载</a>
 					</div>
 			</form>
 		</div>
@@ -101,10 +102,10 @@
 						<c:set var="getxuefen_sum" value="${getxuefen_sum+grade.getGetxuefen()}"></c:set>
 						<c:set var="jidian_sum" value="${jidian_sum+grade.getJidian()}"></c:set>
 					</c:forEach>
-					<th>${grade_sum} / ${grade_sum/j}</th>
-					<th>${xuefen_sum} / ${xuefen_sum/j}</th>
-					<th>${getxuefen_sum} / ${getxuefen_sum/j}</th>
-					<th>${jidian_sum} / ${jidian_sum/j}</th>
+					<th>${grade_sum} / <fmt:formatNumber value="${grade_sum/j}" type="currency" pattern=".00#"/></th>
+					<th>${xuefen_sum} / <fmt:formatNumber value="${xuefen_sum/j}" type="currency" pattern=".00#"/></th>
+					<th>${getxuefen_sum} / <fmt:formatNumber value="${getxuefen_sum/j}" type="currency" pattern=".00#"/></th>
+					<th>${jidian_sum} / <fmt:formatNumber value="${jidian_sum/j}" type="currency" pattern=".00#"/></th>
 				</tr>
 			</tfoot>
 		</table>
