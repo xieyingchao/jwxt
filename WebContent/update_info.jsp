@@ -75,7 +75,7 @@
 			  <label for="inputAccountExample2" class="input-control-label-left">邮箱:</label>
 			</div>
 			<div class="input-control has-label-left">
-			  <input id="inputAccountExample2" type="number" class="form-control" placeholder="" name="tel">
+			  <input id="inputAccountExample2" type="number" class="form-control telnum" placeholder="" name="tel">
 			  <label for="inputAccountExample2" class="input-control-label-left">电话:</label>
 			</div>
 			<div class="select_pre">
@@ -117,6 +117,12 @@
 		var name = '<%= session.getAttribute("name")%>';
 		$('.xuehao').val(user);
 		$('.xingming').val(name);
+		$('.btn-primary').click(function(){
+			if($('.telnum').val().length != 11){
+				alert('请输入合法的11位联系电话！');
+				return false;
+			}
+		});
 		
 	});
 </script>
