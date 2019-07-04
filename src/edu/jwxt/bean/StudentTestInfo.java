@@ -1,5 +1,10 @@
 package edu.jwxt.bean;
 
+/**
+ * 考试信息类，用于存储与学生考试信息相关信息的容器
+ * @author 谢迎超
+ *
+ */
 public class StudentTestInfo {
 
 	int sid;

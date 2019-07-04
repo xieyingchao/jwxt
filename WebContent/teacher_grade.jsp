@@ -112,6 +112,7 @@
 		
 		$('.commit').click(function(){
 			var all = '';
+			var flag = 0;
 			$('tbody tr').each(function(){
 				var scid = $(this).children('.hide').text();
 				var grade = $(this).find('input').val();
@@ -119,26 +120,32 @@
 					var i = scid + ':'+ grade + '/';
 					all = all + i;
 				}
-			});
-			var param = 'all='+all;
-			$.ajax({
-				url:"updategrade",
-				type:"post",
-				data:param,
-				dataType:"json",
-				async:true,
-				success:function(data){
-					if(data == '0'){
-						new $.zui.Messager('修改成功', {
-						    type: 'success' // 定义颜色主题
-						}).show();
-					}else {
-						new $.zui.Messager('第'+data+'个修改失败', {
-						    type: 'danger' // 定义颜色主题
-						}).show();
-					}
+				if(grade<0||grade>100){
+					alert("分数必须满足0-100！");
+					flag = 1;
 				}
 			});
+			var param = 'all='+all;
+			if(flag == 0){
+				$.ajax({
+					url:"updategrade",
+					type:"post",
+					data:param,
+					dataType:"json",
+					async:true,
+					success:function(data){
+						if(data == '0'){
+							new $.zui.Messager('修改成功', {
+							    type: 'success' // 定义颜色主题
+							}).show();
+						}else {
+							new $.zui.Messager('第'+data+'个修改失败', {
+							    type: 'danger' // 定义颜色主题
+							}).show();
+						}
+					}
+				});
+			}
 		});
 	});
 </script>

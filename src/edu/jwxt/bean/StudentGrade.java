@@ -1,5 +1,10 @@
 package edu.jwxt.bean;
 
+/**
+ * 学生成绩信息类，用于存储与学生成绩相关信息的容器
+ * @author 谢迎超
+ *
+ */
 public class StudentGrade {
 
 	String name;

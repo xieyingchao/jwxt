@@ -18,6 +18,11 @@ import edu.jwxt.util.DBUtil;
 
 public class ITeacherDaoImpl implements ITeacherDao{
 
+	/**
+	 * 获取教师信息
+	 * 参数教师工号，教师密码
+	 * 返回教师类
+	 */
 	@Override
 	public Teacher GetTeacherInfo(String num, String pwd) {
 		Connection conn = DBUtil.getConn();
@@ -66,6 +71,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return teacher;
 	}
 	
+	/**
+	 * 更新教师信息
+	 * @param 参数教师类
+	 * @return true:success
+	 */
 	@Override
 	public boolean UpdateInfo(Teacher teacher) {
 		Connection conn = DBUtil.getConn();
@@ -91,6 +101,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return false;
 	}
 	
+	/**
+	 * 更新教师密码
+	 * @param 教师类
+	 * @return 1：修改成功 -1：原密码错误 0：修改错误
+	 */
 	@Override
 	public int UpdatePwd(Teacher teacher) {
 		Connection conn = DBUtil.getConn();
@@ -131,6 +146,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return 0;
 	}
 	
+	/**
+	 * 获取教师课表
+	 * @param 学年、学期、教师主键
+	 * @return 课表类构成的列表
+	 */
 	@Override
 	public List<TeacherCourse> GetTeacherClassTable(String xuenian, String xueqi, int id) {
 		Connection conn = DBUtil.getConn();
@@ -166,6 +186,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return list;
 	}
 	
+	/**
+	 * 获取上课学生名单
+	 * @param 学年、学期、教师主键
+	 * @return 返回学生类构成的列表
+	 */
 	@Override
 	public List<Student> GetClassStudent(String xuenian, String xueqi, int id) {
 		Connection conn = DBUtil.getConn();
@@ -195,6 +220,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return list;
 	}
 	
+	/**
+	 * 教师获取考试详情
+	 * @param 考试类型，教师表主键id
+	 * @return 返回学生测试信息类构成的列表
+	 */
 	@Override
 	public List<StudentTestInfo> GetTestTable(String kind, int tid) {
 		Connection conn = DBUtil.getConn();
@@ -228,6 +258,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return list;
 	}
 	
+	/**
+	 * 教师更新考试信息
+	 * @param 考试课程的主键id，教师id，考试类型，考试地点、考试时间
+	 * @return 返回int数，1：成功 -1：与考试冲突 0：修改失败
+	 */
 	@Override
 	public int UpdateTestinfo(String coid, int id, String kind, String classroom, String time) {
 		Connection conn = DBUtil.getConn();
@@ -272,6 +307,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return 0;
 	}
 	
+	/**
+	 * 教师获取学生成绩
+	 * @param 教师主键id，课程id
+	 * @return 学生成绩类构成的列表
+	 */
 	@Override
 	public List<StudentGrade> GetStudentGrade(int tid, String coid) {
 		Connection conn = DBUtil.getConn();
@@ -303,6 +343,11 @@ public class ITeacherDaoImpl implements ITeacherDao{
 		return list;
 	}
 	
+	/**
+	 * 教师修改学生成绩
+	 * @param 由成绩详情构成的数组
+	 * @return 返回int数，0：修改成功 其他数：表示在该数处修改错误
+	 */
 	@Override
 	public int UpdateStudentGrade(String[] a) {
 		Connection conn = DBUtil.getConn();

@@ -17,6 +17,11 @@ import edu.jwxt.util.FileWrite;
 
 public class IStudentDaoImpl implements IStudentDao{
 
+	/**
+	 * 获取学生信息
+	 * @param 学生学号、学生密码
+	 * @return 学生信息类
+	 */
 	@Override
 	public Student GetStudentInfo(String num, String pwd) {
 
@@ -67,6 +72,11 @@ public class IStudentDaoImpl implements IStudentDao{
 		return student;
 	}
 	
+	/**
+	 * 获取学生成绩
+	 * @param 学年、学期、学生id
+	 * @return 学生成绩类构成的列表
+	 */
 	@Override
 	public List<StudentGrade> GetStudentGrade(String xuenian, String xueqi,int id) {
 		Connection conn = DBUtil.getConn();
@@ -98,6 +108,9 @@ public class IStudentDaoImpl implements IStudentDao{
 		return list;
 	}
 	
+	/**
+	 * 更新学生信息
+	 */
 	@Override
 	public boolean UpdateInfo(Student student) {
 		Connection conn = DBUtil.getConn();
@@ -166,6 +179,11 @@ public class IStudentDaoImpl implements IStudentDao{
 		return 0;
 	}
 	
+	/**
+	 * 获取学生考试信息
+	 * @param 学生考试信息类
+	 * @return 学生考试信息类构成的列表
+	 */
 	@Override
 	public List<StudentTestInfo> SearchTestInfo(StudentTestInfo studenttestinfo) {
 		Connection conn = DBUtil.getConn();
@@ -197,6 +215,9 @@ public class IStudentDaoImpl implements IStudentDao{
 		return list;
 	}
 	
+	/**
+	 * 获取学生课表
+	 */
 	@Override
 	public List<StudentGrade> GetStudentClassTable(String xuenian, String xueqi, int id) {
 		Connection conn = DBUtil.getConn();
@@ -232,6 +253,11 @@ public class IStudentDaoImpl implements IStudentDao{
 		return list;
 	}
 	
+	/**
+	 * 获取选修课程信息
+	 * @param 课程的类型 0：主修课 1：选修课
+	 * @return 课程列表
+	 */
 	@Override
 	public List<StudentGrade> GetXuanxiuClassList(String i) {
 		Connection conn = DBUtil.getConn();
@@ -268,6 +294,11 @@ public class IStudentDaoImpl implements IStudentDao{
 		return list;
 	}
 	
+	/**
+	 * 学生选课
+	 * @param 选取的教师课程id和选课学生的id
+	 * @return int型结果 1：成功 0：失败 -1：与已选课程冲突
+	 */
 	@Override
 	public int SelectClass(String tcid,int sid) {
 		Connection conn = DBUtil.getConn();
@@ -321,6 +352,11 @@ public class IStudentDaoImpl implements IStudentDao{
 		return 0;
 	}
 	
+	/**
+	 * 学生退选课程
+	 * @param 退选课程的教师课程id、学生id
+	 * @return true:退选成功
+	 */
 	@Override
 	public boolean DeleteClass(String tcid, int sid) {
 		Connection conn = DBUtil.getConn();
@@ -350,6 +386,9 @@ public class IStudentDaoImpl implements IStudentDao{
 		return false;
 	}
 	
+	/**
+	 * 获取学生已选的选修课
+	 */
 	@Override
 	public List<String> GetXuanxiuClass(int sid) {
 		Connection conn = DBUtil.getConn();

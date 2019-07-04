@@ -1,5 +1,10 @@
 package edu.jwxt.bean;
 
+/**
+ * 教师课程类，用于存储与教师课程相关信息的容器
+ * @author 谢迎超
+ *
+ */
 public class TeacherCourse {
 
 	String name;

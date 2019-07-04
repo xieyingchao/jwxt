@@ -7,10 +7,12 @@
 		<meta charset="UTF-8">
 		<title>学生成绩</title>
 		<link rel="stylesheet" href="./bootstrap337/css/zui.min.css">
+		<link rel="stylesheet" href="./bootstrap337/css/chosen.min.css">
 		<link rel="stylesheet" href="./bootstrap337/css/datetimepicker.min.css">
 		<script type="text/javascript" src="./bootstrap337/js/jquery-3.4.1.min.js"></script>
 		<script type="text/javascript" src="./bootstrap337/js/zui.min.js"></script>
 		<script type="text/javascript" src="./bootstrap337/js/datetimepicker.min.js"></script>
+		<script type="text/javascript" src="./bootstrap337/js/chosen.min.js"></script>
 		<style type="text/css">
 			.text-center {
 				margin-top: 0;
@@ -86,9 +88,18 @@
 						<td class="hide coid">${grade.getCoid()}</td>
 						<td class="hide kind">${grade.getKind()}</td>
 						<td>
-							<div class="input-control">
-							  <input id="inputAccountExample" type="text" class="form-control classroom " placeholder="已选地点： ${grade.getAddress()}">
-							</div>
+							
+							<select data-placeholder="已选地点： ${grade.getAddress()}" class="chosen-select form-control classroom" tabindex="2">
+							  <option value=""></option>
+							  <option value="云宗教A101" data-keys="yzj yzja 云宗教">云宗教A101</option>
+							  <option value="云宗教A102" data-keys="yzj yzjb 云宗教">云宗教B102</option>
+							  <option value="云宗实A4-5" data-keys="yzs yzsa 云宗实">云宗实A4-5</option>
+							  <option value="理科楼B101" data-keys="lkl lklb 理科楼">理科楼B101</option>
+							  <option value="理科楼A101" data-keys="lkl lkla 理科楼">理科楼A101</option>
+							  <option value="云宗教C208" data-keys="yzj yzjc 云宗教">云宗教C208</option>
+							  <option value="文科楼A101" data-keys="wkl wkla 文科楼">文科楼A101</option>
+							  <option value="工三A101" data-keys="gs gsa 工三">工三A101</option>
+							</select>
 						</td>
 						<td>
 							<input type="text" class="form-control form-datetime time " placeholder="已选时间： ${grade.getTime() }">
@@ -117,6 +128,12 @@ $(function(){
 	    showMeridian: 1,
 	    format: "yyyy-mm-dd hh:ii"
 	});
+	//选择教室
+	$('select.chosen-select').chosen({
+	    no_results_text: '没有找到',    // 当检索时没有找到匹配项时显示的提示文本
+	    disable_search_threshold: 5, // 10 个以下的选择项则不显示检索框
+	    search_contains: true         // 从任意位置开始检索
+	});
 	
 	$(function(){
 		$('.search').click(function(){
@@ -131,28 +148,34 @@ $(function(){
 				kind = $(this).parents('tr').find('.kind').text();
 				coid = $(this).parents('tr').find('.coid').text();
 				param = "coid="+coid+"&&kind="+kind+"&&classroom="+classroom+"&&time="+time;
-				$.ajax({
-					url:"testmanage",
-					type:"post",
-					data:param,
-					dataType:"json",
-					async:true,
-					success:function(data){
-						if(data == '1'){
-							new $.zui.Messager('修改成功！', {
-							    type: 'success' // 定义颜色主题
-							}).show();
-						}else if(data == '-1'){
-							new $.zui.Messager('与其他考试时间地点冲突！', {
-							    type: 'danger' // 定义颜色主题
-							}).show();
-						}else{
-							new $.zui.Messager('修改失败', {
-							    type: 'danger' // 定义颜色主题
-							}).show();
+				if('' != classroom && "" != time){
+					$.ajax({
+						url:"testmanage",
+						type:"post",
+						data:param,
+						dataType:"json",
+						async:true,
+						success:function(data){
+							if(data == '1'){
+								new $.zui.Messager('修改成功！', {
+								    type: 'success' // 定义颜色主题
+								}).show();
+							}else if(data == '-1'){
+								new $.zui.Messager('与其他考试时间地点冲突！', {
+								    type: 'danger' // 定义颜色主题
+								}).show();
+							}else{
+								new $.zui.Messager('修改失败', {
+								    type: 'danger' // 定义颜色主题
+								}).show();
+							}
 						}
-					}
-				});
+					});
+				}else{
+					alert("请填写完整信息");
+					return false;
+				}
+				
 			});
 			
 		});

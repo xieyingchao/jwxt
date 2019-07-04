@@ -1,5 +1,10 @@
 package edu.jwxt.bean;
 
+/**
+ * 学生类，用于存储学生相关信息的容器
+ * @author 谢迎超
+ *
+ */
 public class Student {
 
 	int sid;
