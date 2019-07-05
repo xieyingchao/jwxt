@@ -249,7 +249,7 @@ public class IStudentDaoImpl implements IStudentDao{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+		FileWrite.CourseWrite(list);
 		return list;
 	}
 	

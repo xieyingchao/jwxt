@@ -62,7 +62,7 @@
 					
 					<div class="right">
 						<button class="btn search" type="submit">检索</button>
-						<button class="btn" type="button">下载</button>
+						<a class="btn" href="download?filename=course.xls">下载</a>
 					</div>
 			</form>
 		</div>

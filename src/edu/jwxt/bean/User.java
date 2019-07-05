@@ -2,7 +2,7 @@ package edu.jwxt.bean;
 
 /**
  * 用户类，主要用于用户初期的登录
- * @author 谢迎超
+ * 
  *
  */
 public class User {

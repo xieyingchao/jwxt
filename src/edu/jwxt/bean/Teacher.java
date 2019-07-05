@@ -2,7 +2,7 @@ package edu.jwxt.bean;
 
 /**
  * 教师类，用于存储与教师相关信息的容器
- * @author 谢迎超
+ * 
  *
  */
 public class Teacher {

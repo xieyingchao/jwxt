@@ -77,4 +77,49 @@ public class FileWrite {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void CourseWrite(List<StudentGrade> list) {
+		try {
+			WritableWorkbook book = Workbook.createWorkbook(new File("E:\\eclipse-workspace\\jwxt\\download\\course.xls"));
+			WritableSheet sheet = book.createSheet("sheet1", 0);
+			
+			Label label1 = new Label(0, 0, "序号");
+			sheet.addCell(label1);
+			
+			Label label2 = new Label(1,0,"课程名称");
+			sheet.addCell(label2);
+			
+			Label label3 = new Label(2,0,"课程学分");
+			sheet.addCell(label3);
+			
+			Label label4 = new Label(3,0,"任课教师");
+			sheet.addCell(label4);
+			
+			Label label5 = new Label(4,0,"上课时间");
+			sheet.addCell(label5);
+			
+			Label label6 = new Label(5,0,"上课地点");
+			sheet.addCell(label6);
+			
+			for (int i = 0; i < list.size(); i++) {
+				Number number1 = new Number(0, i+1, i+1);
+				sheet.addCell(number1);
+				Label label = new Label(1, i+1, list.get(i).getName());
+				sheet.addCell(label);
+				Number number2 = new Number(2, i+1, list.get(i).getXuefen());
+				sheet.addCell(number2);
+				Label label31 = new Label(3, i+1, list.get(i).getTeacher());
+				sheet.addCell(label31);
+				Label number4 = new Label(4, i+1, list.get(i).getTime());
+				sheet.addCell(number4);
+				Label number5 = new Label(5, i+1, list.get(i).getClassroom());
+				sheet.addCell(number5);
+			}
+			book.write();
+			book.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 }

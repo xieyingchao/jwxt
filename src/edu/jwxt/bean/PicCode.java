@@ -2,7 +2,7 @@ package edu.jwxt.bean;
 
 /**
  * 图片验证码类，存储验证码图片地址，答案以及验证码的id号
- * @author 谢迎超
+ *
  *
  */
 public class PicCode {
